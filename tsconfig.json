@@ -1,0 +1,28 @@
+{
+  "compilerOptions": {
+    "target": "ESNext",
+    "module": "NodeNext",
+    "moduleResolution": "NodeNext",
+    "resolveJsonModule": true,
+    "esModuleInterop": true,
+    "baseUrl": ".",
+    "paths": {
+      "@/*": ["src/*"]
+    },
+    "preserveSymlinks": true,
+    "removeComments": true,
+    "forceConsistentCasingInFileNames": true,
+    "strict": true,
+    "skipLibCheck": true,
+    "outDir": "build",
+    "rootDir": "src",
+    "typeRoots": [
+      "./node_modules/@acode-app/types",
+      "./typings",
+      "./node_modules/@types"
+    ],
+    "types": []
+  },
+  "include": ["src", "typings"],
+  "exclude": ["build", "node_modules"]
+}

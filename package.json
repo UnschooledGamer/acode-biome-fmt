@@ -1,0 +1,45 @@
+{
+  "name": "acode-biome-fmt",
+  "version": "0.0.0",
+  "description": "An Biome Formatter for Acode",
+  "main": "dist/main.js",
+  "type": "module",
+  "scripts": {
+    "dev": "NODE_ENV=development webpack --mode development && node .vscode/pack-zip.cjs",
+    "build": "webpack && node .vscode/pack-zip.cjs",
+    "publish": "node .vscode/publish.ts",
+    "clean": "rimraf -v build/"
+  },
+  "repository": "https://github.com/unschooledgamer/acode-biome-fmt",
+  "author": "Unschooled Gamer",
+  "license": "MIT",
+  "dependencies": {
+    "@biomejs/wasm-web": "https://pkg.pr.new/biomejs/biome/@biomejs/wasm-web@1a27277",
+    "@types/ace": "^0.0.52"
+  },
+  "devDependencies": {
+    "@acode-app/types": "latest",
+    "@babel/cli": "latest",
+    "@babel/core": "latest",
+    "@babel/preset-env": "latest",
+    "axios": "latest",
+    "babel-loader": "latest",
+    "form-data": "latest",
+    "html-tag-js": "^2.3.8",
+    "inquirer": "latest",
+    "jszip": "latest",
+    "rimraf": "latest",
+    "ts-loader": "latest",
+    "tsx": "latest",
+    "typescript": "^5.7.2",
+    "webpack": "^5.99.9",
+    "webpack-cli": "^6.0.1"
+  },
+  "browserslist": [
+    "cover 100%,not android < 5"
+  ],
+  "resolutions": {
+    "terser": ">=5.14.2 ",
+    "glob-parent": ">=5.1.2"
+  }
+}

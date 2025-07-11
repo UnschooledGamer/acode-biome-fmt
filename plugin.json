@@ -1,0 +1,20 @@
+{
+  "id": "acode.fmt.biome",
+  "name": "Acode Biome Fmt",
+  "main": "main.js",
+  "version": "0.0.0",
+  "readme": "readme.md",
+  "icon": "icon.png",
+  "files": [],
+  "minVersionCode" : 290,
+  "license": "MIT",
+  "changelogs": "CHANGELOG.md",
+  "keywords": [],
+  "price": 0,
+  "repository": "https://github.com/unschooledgamer/acode-biome-fmt",
+  "author": {
+    "name": "UnschooledGamer",
+    "email": "unschooledgamer+viaAcodePlugin@gmail.com",
+    "github": "unschooledgamer"
+  }
+}
