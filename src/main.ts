@@ -66,7 +66,7 @@ class AcodePlugin {
           );
         }
 
-        const file = editorManager.getFile(event.data.path, "name");
+        const file = editorManager.getFile(event.data.path, "uri");
 
         if (!file) return;
 
