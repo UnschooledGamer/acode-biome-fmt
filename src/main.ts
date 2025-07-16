@@ -90,13 +90,56 @@ class AcodePlugin {
   async format() {
     // get contents from editor
     const contents = editorManager.editor.session.getValue();
+    const activeFile = editorManager.activeFile;
+
+    const biomeConfig = await this.#findBiomeConfig(activeFile.uri);
 
     // send contents to biome worker
     this.biomeWorker?.postMessage({
       type: "formatContent",
-      path: editorManager.activeFile.name,
+      path: activeFile.uri,
       content: contents,
+      config: biomeConfig, // can be null
     });
+  }
+
+  /**
+   * Finds the biome.json configuration file by traversing up from the file's directory.
+   * @param {string} fileUri The URI of the file.
+   * @returns {Promise<string | null>} The content of biome.json or null if not found.
+   */
+  async #findBiomeConfig(fileUri: string): Promise<string | null> {
+    if (!fileUri) {
+      return null;
+    }
+
+    let path = fileUri;
+    if (path.startsWith("file://")) {
+      path = new URL(path).pathname;
+    }
+
+    let dir = path.substring(0, path.lastIndexOf("/"));
+
+    while (dir && dir !== "/") {
+      const configPath = `${dir}/biome.json`;
+      try {
+        const fs = acode.fsOperation(configPath);
+        const stats = await fs.stat();
+        if (stats.isFile) {
+          const configContent = await fs.readFile("utf-8");
+          return configContent as string;
+        }
+      } catch (e) {
+        // ignore error, file does not exist
+      }
+      const parentDir = dir.substring(0, dir.lastIndexOf("/"));
+      if (parentDir === dir) {
+        // reached root
+        break;
+      }
+      dir = parentDir;
+    }
+    return null;
   }
 
   /**

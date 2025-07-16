@@ -137,14 +137,22 @@ self.addEventListener("message", async (msgEvent) => {
 
       const formatContent = msgData.content;
       const path = msgData.path;
+      const config = msgData.config;
 
       filesystem.insert(path, encoder.encode(formatContent));
 
+      let configuration = DEFAULT_BIOME_SETTINGS;
+      if (config) {
+        try {
+          configuration = JSON.parse(config);
+        } catch (e) {
+          console.error("Failed to parse biome.json", e);
+        }
+      }
+
       workspace.updateSettings({
         projectKey,
-        configuration: {
-          ...DEFAULT_BIOME_SETTINGS,
-        },
+        configuration,
       });
 
       workspace.openFile({
